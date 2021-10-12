@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+actor EC管理者 as Admin
+actor ユーザ as User
+actor 配送業者 as Delivery
+actor メーカ as Maker
+
+rectangle EC-CUBE {
+  User --> (商品表示)
+  User --> (注文)
+  User --> (問い合わせ)
+  Admin --> (商品登録)
+  Admin -> (注文確認)
+  Admin <-- (問い合わせ)
+  Admin --> (コンテンツ登録)
+  (注文) ..> (ステータス変更)
+  (注文) .. (注文確認)
+  (ステータス変更) .. (伝票CSV取込)
+  (在庫数更新) .. (在庫数CSV取込)
+}
+
+rectangle WMS {
+  Admin ->> (商品マスタ登録)
+  (伝票CSV取込) <.. (伝票CSV出力)
+  (在庫数CSV取込) <.. (在庫数CSV出力)
+  (在庫数CSV出力)
+  rectangle BtoC用倉庫 {
+    (出荷) ..> Delivery
+    (在庫数CSV出力) <.. (入荷)
+  }
+}
+
+Admin -- (発注)
+(発注) --> Maker
+Delivery -- (返品)
+Maker ..> (納品)
+(納品) ..> (入荷)
+(返品) ..> (入荷)
+
+note right of Admin : This is an example.
+
+@enduml

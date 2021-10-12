@@ -1,0 +1,31 @@
+site_name: My Docs
+theme:
+  name: material
+  language: 'ja'
+  features:
+    - navigation.top
+plugins:
+  - search
+  - awesome-pages
+extra:
+  search:
+    language: 'jp'
+markdown_extensions:
+  - admonition
+  - fontawesome_markdown
+  - codehilite
+  - pymdownx.mark
+  - pymdownx.magiclink
+  - pymdownx.emoji
+  - pymdownx.keys
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+extra_css:
+  - "//fonts.googleapis.com/earlyaccess/notosansjp.css"
+  - "//fonts.googleapis.com/css?family=Open+Sans:600,800"
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+extra_javascript:
+  - "https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"
